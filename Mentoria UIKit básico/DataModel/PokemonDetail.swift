@@ -7,3 +7,15 @@ struct PokemonDetail {
     let imageUrl: String
 }
 
+extension PokemonDetail {
+    static func mock() -> PokemonDetail {
+        .init(
+            id: 54,
+            name: "Psyduck",
+            height: 0.8,
+            weight: 19.6,
+            types: [.water],
+            imageUrl: "psyduck"
+        )
+    }
+}

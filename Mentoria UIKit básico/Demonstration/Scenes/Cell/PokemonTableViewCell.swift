@@ -28,6 +28,6 @@ class PokemonTableViewCell: UITableViewCell {
     }
     
     public func configure(with pokemon: Pokemon) {
-        customView.configure(with: .init(pokemon: pokemon))
+        customView.configure(with: pokemon)
     }
 }

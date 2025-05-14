@@ -4,5 +4,6 @@ class PokemonDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = pokemonDetail
+        pokemonDetail.configure(with: .mock())
     }
 }

@@ -55,23 +55,9 @@ class PokemonCellView: UIView {
         ])
     }
     
-    public func configure(with viewModel: ViewModel) {
-        pokemonImageView.image = UIImage(named: viewModel.pokemonImage)
-        nameLabel.text = viewModel.name
-        numberLabel.text = "#\(viewModel.number)"
-    }
-}
-
-extension PokemonCellView {
-    struct ViewModel {
-        let name: String
-        let number: Int
-        let pokemonImage: String
-        
-        init(pokemon: Pokemon) {
-            self.name = pokemon.name
-            self.number = pokemon.number
-            self.pokemonImage = pokemon.pokemonImage
-        }
+    public func configure(with pokemon: Pokemon) {
+        pokemonImageView.image = UIImage(named: pokemon.pokemonImage)
+        nameLabel.text = pokemon.name
+        numberLabel.text = "#\(pokemon.number)"
     }
 }

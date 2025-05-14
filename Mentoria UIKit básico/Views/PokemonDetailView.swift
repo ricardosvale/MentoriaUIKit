@@ -4,37 +4,30 @@ class PokemonDetailView: UIView {
 
     private let pokemonImageView: UIImageView = {
         let imageView = UIImageView()
-        // Placeholder: Use uma imagem do Pokémon
-        imageView.image = UIImage(systemName: "tortoise.fill") // substituir por imagem de Pokémon real
-        imageView.tintColor = .systemGreen
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Bulbasaur" // Exemplo de nome de Pokémon
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private let statsLabel: UILabel = {
+    private let heightLabel: UILabel = {
         let label = UILabel()
-        label.text = "HP: 45  Atk: 49  Def: 49" // Exemplo de estatísticas básicas
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private let descriptionLabel: UILabel = {
+    private let weightLabel: UILabel = {
         let label = UILabel()
-        label.text = "Bulbasaur pode sobreviver por vários dias apenas com a semente em suas costas absorvendo luz solar."
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let typeLabel: UILabel = {
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -44,8 +37,9 @@ class PokemonDetailView: UIView {
             arrangedSubviews: [
                 pokemonImageView,
                 nameLabel,
-                statsLabel,
-                descriptionLabel
+                heightLabel,
+                weightLabel,
+                typeLabel
             ]
         )
         stackView.axis = .vertical
@@ -78,5 +72,16 @@ class PokemonDetailView: UIView {
             pokemonImageView.heightAnchor.constraint(equalToConstant: 150),
             pokemonImageView.widthAnchor.constraint(equalToConstant: 150)
         ])
+    }
+    
+    func configure(with pokemonDetail: PokemonDetail) {
+        nameLabel.text = pokemonDetail.name
+        heightLabel.text = "altura \(pokemonDetail.height)"
+        weightLabel.text = "peso \(pokemonDetail.weight)"
+        
+        let typesText = pokemonDetail.types.map { $0.getTitle() }.joined(separator: ", ")
+        typeLabel.text = "tipo \(typesText)"
+        
+        pokemonImageView.image = UIImage(named: pokemonDetail.imageUrl)
     }
 }
