@@ -35,6 +35,7 @@ class PokemonListViewController: UIViewController, UITableViewDataSource, UITabl
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? PokemonTableViewCell else {
             return UITableViewCell()
         }
+        cell.configure(with: Pokemon.mock())
         return cell
     }
 }

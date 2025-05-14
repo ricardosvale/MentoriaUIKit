@@ -26,4 +26,8 @@ class PokemonTableViewCell: UITableViewCell {
             customView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
+    
+    public func configure(with pokemon: Pokemon) {
+        customView.configure(with: .init(pokemon: pokemon))
+    }
 }

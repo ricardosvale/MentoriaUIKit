@@ -4,26 +4,18 @@ class PokemonCellView: UIView {
 
     private let pokemonImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "flame.fill")
-        imageView.tintColor = .systemOrange
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Charmander"
-        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private let descriptionLabel: UILabel = {
+    private let numberLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tipo Fogo – Um Pokémon lagarto que pode expelir chamas de sua cauda."
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -33,24 +25,16 @@ class PokemonCellView: UIView {
             arrangedSubviews: [
                 pokemonImageView,
                 nameLabel,
-                descriptionLabel
+                numberLabel
             ]
         )
         stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = .white
-        self.layer.cornerRadius = 10
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.lightGray.cgColor
-        
         setupLayout()
     }
 
@@ -60,14 +44,34 @@ class PokemonCellView: UIView {
 
     private func setupLayout() {
         self.addSubview(verticalStackView)
-        
+        backgroundColor = .white
         NSLayoutConstraint.activate([
-            verticalStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            verticalStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            verticalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            verticalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            verticalStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            verticalStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            verticalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            verticalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             pokemonImageView.heightAnchor.constraint(equalToConstant: 100),
             pokemonImageView.widthAnchor.constraint(equalToConstant: 100)
         ])
+    }
+    
+    public func configure(with viewModel: ViewModel) {
+        pokemonImageView.image = UIImage(named: viewModel.pokemonImage)
+        nameLabel.text = viewModel.name
+        numberLabel.text = "#\(viewModel.number)"
+    }
+}
+
+extension PokemonCellView {
+    struct ViewModel {
+        let name: String
+        let number: Int
+        let pokemonImage: String
+        
+        init(pokemon: Pokemon) {
+            self.name = pokemon.name
+            self.number = pokemon.number
+            self.pokemonImage = pokemon.pokemonImage
+        }
     }
 }
