@@ -13,7 +13,7 @@ DerivedData/
 xcuserdata/
 *.xcscmblueprint
 *.xccheckout
-
+**/xcuserdata/**/*.xcdebugger
 # SwiftPM
 .swiftpm/
 Package.resolved
