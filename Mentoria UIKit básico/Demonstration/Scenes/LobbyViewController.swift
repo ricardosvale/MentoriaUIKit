@@ -51,7 +51,7 @@ class LobbyViewController: UIViewController {
     }
 
     @objc func goToPokemonDetail() {
-        navigationController?.pushViewController(PokemonDetailViewController(), animated: true)
+        navigationController?.pushViewController(PokemonDetailViewController(pokemon: PokemonDetail.mock()), animated: true)
     }
 }
 
